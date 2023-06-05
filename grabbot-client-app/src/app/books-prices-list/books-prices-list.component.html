@@ -1,0 +1,89 @@
+
+
+
+<div class="headerDiv">
+  <div class="search">
+    <form>
+      <mat-form-field>
+          <mat-icon matSuffix >search</mat-icon>
+          <input matInput type="search" placeholder="search here" class="search-input" [(ngModel)]="searchText"  [ngModelOptions]="{standalone: true}" (search)="search($event)">
+      </mat-form-field>
+    </form>
+  </div>
+  <div>
+    <button class="btn" (click)="toggleTableRows()" >Toggle Rows</button>
+    <button class="btn" [disabled]="isDownloadDisabled" (click)="downloadCsv()"> Download CSV </button>
+    <button class="btn" [disabled]="isDownloadDisabled" (click)="downloadJson()"> Download JSON</button>
+    <button class="btn"  (click)="checkCrawlStatus()"> Crawl Status</button>
+  </div>
+</div>
+<div class="mat-elevation-z8 tbldiv">
+  <table mat-table [dataSource]="dataSource"multiTemplateDataRows class="mat-elevation-z8 ">
+
+    
+    <ng-container matColumnDef="ean" class="tablecolumn">
+      <th mat-header-cell *matHeaderCellDef width="20%"> EAN </th>
+      <td mat-cell *matCellDef="let element"> {{element.ean}} </td>
+    </ng-container>
+
+   
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef width="60%"> Title </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="sitePrice">
+      <th mat-header-cell *matHeaderCellDef width="20%" > Prices </th>
+      <td mat-cell *matCellDef="let element">
+        <a mat-button href="javascript:void()"  (click)="element.isExpanded = !element.isExpanded">View Prices</a>
+      </td>
+    </ng-container>
+
+   
+ <!-- Template for details row -->
+ <ng-container matColumnDef="expandedDetail">
+  <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+
+    <div class="row price-element-detail" [@detailExpand]="element.isExpanded ? 'expanded' : 'collapsed'">
+      <mat-list>
+        <!-- <div mat-subheader>Prices for {{element.title}}</div> -->
+        <mat-list-item *ngFor="let price of element.sitePrices">
+          <div mat-line><b>{{price.website}}</b>({{price.currency}})  &nbsp;&nbsp;&nbsp;&nbsp;   Price: {{price.price}}  &nbsp;&nbsp;&nbsp;&nbsp;   Difference: {{price.difference}} &nbsp;&nbsp;&nbsp;&nbsp; Last Crawled: {{price.lastCrawled}} &nbsp;&nbsp;&nbsp;&nbsp; {{price.availability}}</div>
+          <div mat-line > <a href="{{price.productUrl}}"> {{price.productUrl}} </a> </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+  </td>
+</ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="price-element-row"
+    [class.student-expanded-row]="row.isExpanded"></tr>
+
+      <!-- Extra row to show detail content column -->
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="price-detail-row"></tr>
+
+ 
+
+  </table>
+
+<div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white; padding: 40px">
+  <mat-spinner>
+  </mat-spinner>
+  </div>
+
+     <mat-paginator   [pageSizeOptions]="[5, 10, 20, 30]"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements"
+                 [pageIndex]="pageIndex" [pageSize]="pageSize" [length]="totalCount"
+                 (page)="pageChanged($event)"
+                >
+  </mat-paginator>
+
+  
+
+</div>
+

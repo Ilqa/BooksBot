@@ -1,0 +1,4 @@
+{
+    "appService.deploySubpath": "dist\\grabbot-client-app",
+    "appService.defaultWebAppToDeploy": "/subscriptions/4b04e78c-fa00-4b2f-beb5-51465f653dcf/resourceGroups/rg-booksbot-eastus/providers/Microsoft.Web/sites/webapp-bookbots-eastus-ww"
+}

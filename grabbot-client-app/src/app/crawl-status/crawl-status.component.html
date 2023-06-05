@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Crawl Status for Past Hour</h1>
+<div mat-dialog-content>
+  <p>Successfully Crawled Urls: {{data.successfulCrawls}}</p>
+  <!-- <p>Failed crawled Urls: {{data.failedCrawls}}</p> -->
+  <p>Distinct Eans: {{data.distinctEans}}</p>
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Favorite Animal</mat-label>
+    <input matInput [(ngModel)]="data.animal">
+  </mat-form-field> -->
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onOkClick()">Ok</button> 
+</div>

@@ -1,0 +1,97 @@
+table {
+    width: 100%;
+  }
+
+  .btn {
+    background-color: #1976d2;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 10px;
+    height: 50px;
+  }
+
+  /* .status-btn{
+    border-radius: 10px;
+  } */
+
+  .btn:enabled{
+    background-color: #1976d2
+  }
+  .tablecolumn{
+    min-width: 10000px;
+    padding-left: 100px;
+  }
+
+  table
+  {
+   table-layout:fixed
+  }
+
+  .tbldiv{
+    overflow-x: auto;
+  }
+  /* Darker background on mouse-over */
+  .btn:hover {
+    background-color: rgb(50, 99, 245);
+  }
+
+  .btn:disabled{
+    background-color: #dddddd;
+  }
+
+  .headerDiv{
+      display: flex;
+      justify-content: space-between;
+  }
+
+  .mat-header-cell {
+    background: rgb(234, 241, 253);
+}
+
+
+input {
+  height: 30px;
+}
+
+tr.price-detail-row {
+  height: 0;
+}
+
+tr.price-element-row:not(.student-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.price-element-row:not(.student-expanded-row):active {
+  background: #efefef;
+}
+
+.price-element-row td {
+  border-bottom-width: 0;
+}
+
+.price-element-detail {
+  overflow: hidden;
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  background-color: #fcf9f9;
+  box-shadow: inset 2px 3px 8px #c1c1c1;
+  border-radius: 3px;
+}
+
+.student-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.student-element-description {
+  padding: 16px;
+}
+
+.student-element-description-attribution {
+  opacity: 0.5;
+}
